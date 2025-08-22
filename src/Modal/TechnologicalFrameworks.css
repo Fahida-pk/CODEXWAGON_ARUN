@@ -1,0 +1,44 @@
+.frameworks-section {
+  text-align: center;
+  margin: 80px 0;
+}
+
+.frameworks-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.frameworks-section .highlight {
+  color: #0056d2;
+}
+
+.frameworks-section p {
+  margin-bottom: 30px;
+  color:black;
+}
+
+.cloud-wrapper {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.cloud-row {
+  display: inline-flex;
+  gap: 40px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #c4c9ce;
+}
+
+.cloud-item {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.cloud-item:hover {
+  color: #000;
+  opacity: 1;
+}

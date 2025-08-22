@@ -1,0 +1,150 @@
+.our-story-page {
+  width: 100%;
+  max-width: 100%;   /* remove 1200px restriction */
+  margin: 0;
+  padding: 4rem 6rem;
+  background: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.our-story-container {
+  width: 100%;
+  max-width: 100%;   /* full width */
+  margin: 0;
+  padding: 40px 20px;
+}
+
+/* Hero Section */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-text h2 {
+  font-size: 5rem;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #222;
+}
+
+.hero-text h2 span {
+  color: black;
+}
+
+.hero-text p {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: #555;
+  max-width: 90%;
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+}
+
+.stat-card h3 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.stat-card p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #444;
+}
+
+/* Colors */
+.stat-card.blue h3 {
+  color: #00b4ff;
+}
+
+.stat-card.purple h3 {
+  color: #8e44ff;
+}
+
+.stat-card.yellow h3 {
+  color: #ffcc00;
+}
+
+.stat-card.wide {
+  grid-column: span 2;
+}
+
+/* Content Section - InterSmart Style */
+.content-section {
+  margin-top: 8rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* left smaller, right wider */
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Left Side (Ideas Block) */
+/* Left Side (Ideas Block) */
+.ideas-block {
+  border-left: 12px solid #ffcc00;  /* line thicker (8px → 12px) */
+  padding-left: 2rem;
+  min-height: 500px; /* block height increase */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically align text */
+}
+
+
+.ideas-block h3 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #111;
+}
+
+.ideas-block h3 span {
+  font-weight: 700; /* IDEAS bold */
+  color: #000;
+}
+
+.ideas-block p {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #555;
+}
+
+/* Right Side (Innovation Block) */
+.innovation-block h2 {
+  font-size: 2.8rem;
+  font-weight: 400; /* light for Step Into The World */
+  line-height: 1.2;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+
+.innovation-block h2 span {
+  font-weight: 700; /* bold for Of Digital Innovations */
+  color: #000;
+}
+
+.innovation-block p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 1rem;
+}

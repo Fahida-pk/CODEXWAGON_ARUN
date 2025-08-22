@@ -1,0 +1,45 @@
+.technologies-section {
+  background: #f6f9fc;
+  padding: 60px 80px;
+  text-align: center;
+}
+
+.technologies-section h2 {
+  font-size: 52px;
+  font-weight: 200;
+  margin-bottom: 40px;
+}
+
+.technologies-section h2 span {
+  font-weight: 1000;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 in a row */
+  gap: 10px;
+  justify-items: center;
+}
+
+.tech-card {
+  background:white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-card img {
+  max-width: 100px;
+  max-height: 60px;
+  object-fit: contain;
+}
+
+.tech-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}

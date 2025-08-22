@@ -1,0 +1,195 @@
+/* Default navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-weight: 800;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Hide on scroll down */
+.navbar.hidden {
+  transform: translateY(-100%);
+}
+
+/* Glass effect when scrolling */
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  padding: 18px 80px;
+}
+
+/* Brand text */
+.navbar-logo .brand {
+  font-size: 2rem;
+  font-weight: 1000;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+/* HOME PAGE → default white, scrolled black */
+.navbar.home .navbar-logo .brand {
+  color: #fff;
+}
+.navbar.home.scrolled .navbar-logo .brand {
+  color: #222;
+}
+.navbar.home .navbar-links li a,
+.navbar.home .navbar-links li .mega-menu-btn {
+  color: #fff;
+}
+.navbar.home.scrolled .navbar-links li a,
+.navbar.home.scrolled .navbar-links li .mega-menu-btn {
+  color: #222;
+}
+.navbar.home .navbar-menu {
+  color: #fff;
+}
+.navbar.home.scrolled .navbar-menu {
+  color: #222;
+}
+
+/* INNER PAGES → always black */
+.navbar.inner .navbar-logo .brand {
+  color: #222;
+}
+.navbar.inner .navbar-links li a,
+.navbar.inner .navbar-links li .mega-menu-btn {
+  color: #222;
+}
+.navbar.inner .navbar-menu {
+  color: #222;
+}
+
+/* Links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  font-weight: 500;
+  gap: 40px;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  font-style: normal;
+  font-size: 1.3rem;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 8px;
+  transition: color 0.3s;
+}
+
+/* Mega Menu Button Styling */
+.navbar-links li .mega-menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 8px;
+  transition: color 0.3s;
+}
+
+/* Underline effect for both links and button */
+.navbar-links li a::after,
+.navbar-links li .mega-menu-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 3px;
+  background: #facc15;
+  transition: width 0.3s ease;
+}
+
+.navbar-links li a:hover::after,
+.navbar-links li a.active::after,
+.navbar-links li .mega-menu-btn:hover::after {
+  width: 100%;
+}
+
+/* Hover/active text color */
+.navbar-links li a:hover,
+.navbar-links li a.active,
+.navbar-links li .mega-menu-btn:hover {
+  color: #facc15;
+}
+
+/* Hamburger Menu */
+.navbar-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.navbar-menu span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: currentColor;
+  border-radius: 3px;
+  transition: 0.4s;
+}
+
+/* Show only on mobile */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: flex;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.95);
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 220px;
+    padding: 20px;
+    border-radius: 8px;
+    gap: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-links.open {
+    display: flex;
+    animation: slideIn 0.3s ease forwards;
+  }
+}
+
+/* Hamburger Animation when Active */
+.navbar-menu.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.navbar-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+.navbar-menu.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Slide-in animation for menu */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

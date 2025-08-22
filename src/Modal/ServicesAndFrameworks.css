@@ -1,0 +1,63 @@
+.customer-section {
+  width: 100%;
+  background-color: #e6f2ff; /* light blue */
+  padding: 100px 20px;
+}
+
+.customer-section .heading {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.customer-section .heading h2 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #222;
+}
+
+.customer-section .heading span {
+  color: #000;
+}
+
+.cards {
+  max-width: 1500px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  min-height: 320px;
+  transition: 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  background: #d6eaff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 22px;
+  margin: 20px 0 10px;
+}
+
+.card p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.icon {
+  display: block;
+  margin: 0 auto 15px;
+  color: #007bff; /* blue */
+}
