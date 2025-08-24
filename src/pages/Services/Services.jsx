@@ -1,33 +1,40 @@
 import React from "react";
 import "./Services.css";
 import { motion } from "framer-motion";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // ✅ Detailed Services Data (SEO friendly with Kerala focus)
 const services = [
   {
-    title: "Web Development in Kerala",
+    title: "Digital Marketing",
     description:
-      "Boost your online presence with custom web development solutions in Kerala. Our expert developers craft responsive, SEO-friendly websites tailored for your business needs.",
-    icon: "💻",
+      "Maximize ROI with comprehensive digital marketing services, including social media management, PPC, and email marketing. Increase your brand visibility and customer base with the best digital marketing services.",
+    icon: <img src="https://www.intersmartsolution.com/wp-content/uploads/2023/11/DigitalMarketing.svg" alt="Digital Marketing" width="67" height="63" loading="lazy" />, 
+    link: "https://intersmartsolution.com/digital-marketing/"
   },
   {
-    title: "Mobile Development in Kerala",
+    title: "Mobile Application",
     description:
-      "Deliver high-performance mobile applications in Kerala for Android & iOS. Enhance engagement with feature-rich, user-friendly mobile solutions.",
-    icon: "📱",
+      "Boost engagement with high-performing, feature-packed mobile apps for Android and iOS that drive digital transformation. Build the best mobile applications for all your needs with App development genies at Inter Smart.",
+    icon: <img src="https://www.intersmartsolution.com/wp-content/uploads/2023/11/MobApp.svg" alt="Mobile Application" width="67" height="63" loading="lazy" />, 
+    link: "https://intersmartsolution.com/mobile-app-development/"
   },
   {
-    title: "Cloud Services in Kerala",
+    title: "Search Engine Optimization",
     description:
-      "Secure and scalable cloud services in Kerala that optimize business performance. Migrate, manage, and grow with our tailored cloud strategies.",
-    icon: "☁️",
+      "Dominate search engine results with effective SEO campaigns tailored to your business goals and target audience. Rank your website on top search engine results and stand out among competitors.",
+    icon: <img src="https://www.intersmartsolution.com/wp-content/uploads/2025/01/seo.png" alt="SEO" width="67" height="63" loading="lazy" />, 
+    link: "https://intersmartsolution.com/seo/"
   },
   {
-    title: "AI Services in Kerala",
+    title: "Web Development",
     description:
-      "Empower your business with AI-powered services in Kerala. From chatbots to predictive analytics, unlock smarter digital transformations.",
-    icon: "🤖",
-  },
+      "Boost your online presence with custom web development, intuitive design, and responsive layouts for all devices. Connect with your audience, generate leads and grow with a powerful website.",
+    icon: <img src="https://www.intersmartsolution.com/wp-content/uploads/2023/11/WebDev.svg" alt="Web Development" width="67" height="63" loading="lazy" />, 
+    link: "https://intersmartsolution.com/web-development/"
+  }
 ];
 
 export default function Services() {
@@ -59,25 +66,60 @@ export default function Services() {
           </motion.span>
         </motion.h2>
 
-        {/* ✅ Services Cards */}
-        <div className="services-container">
+        {/* ✅ Services Cards with react-slick Carousel */}
+        <Slider
+          className="services-carousel"
+          dots={false}
+          infinite={true}
+          speed={800}
+          slidesToShow={4}
+          slidesToScroll={1}
+          autoplay={true}
+          autoplaySpeed={2500}
+          responsive={[
+            {
+              breakpoint: 1000,
+              settings: { slidesToShow: 2 }
+            },
+            {
+              breakpoint: 600,
+              settings: { slidesToShow: 1 }
+            }
+          ]}
+        >
           {services.map((service, index) => (
-            <motion.div
+            <a
               key={index}
-              className="service-card"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
+              className="ServBox WebDev"
+              href={service.link}
+              style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
             >
-              <div className="icon">{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <a href="#">VIEW MORE +</a>
-            </motion.div>
+              <div className="Icon">
+                {/* Replace with <img> if you have icons, else keep emoji */}
+                {service.icon}
+              </div>
+              <div className="ServName">
+                {service.title.split(' in ')[0].includes('Development') ? (
+                  <>
+                    {service.title.split(' in ')[0].split('Development')[0]}
+                    <br />
+                    Development
+                  </>
+                ) : (
+                  service.title.split(' in ')[0]
+                )}
+              </div>
+              <div className="Bar" style={{ height: 4, background: '#00bfff', borderRadius: 2, margin: '12px auto', width: 60 }}></div>
+              <div className="Info">
+                {service.description}
+              </div>
+              <div className="ViewMore">
+                <span>View more</span>
+                <span style={{ marginLeft: 6 }}>+</span>
+              </div>
+            </a>
           ))}
-        </div>
+        </Slider>
       </div>
     </section>
   );
