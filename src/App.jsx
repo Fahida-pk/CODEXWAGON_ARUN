@@ -6,6 +6,8 @@ import Contact from "./pages/Contact/Contact.jsx";
 import OurStoryPage from "./Modal/OurStoryPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import LiveChat from "./components/Chat/LiveChat.jsx";
+
+
 import './index.css';
 
 function App() {
@@ -20,7 +22,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
-
+ 
       <Footer />
       <LiveChat />
     </div>

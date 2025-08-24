@@ -198,8 +198,27 @@
   overflow: hidden;
 }
 .ServBox:hover {
-  background: #00bfff;
+  background: #b6f0ff;
+  color: #222;
+  transform: translateX(22px) scaleY(1.09);
+  min-height: 460px;
+  box-shadow: 0 24px 64px 0 rgba(0,191,255,0.18), 0 0 0 4px #e3f2fd;
+  z-index: 2;
+  padding-bottom: 48px;
 }
+.ServBox:hover .Icon {
+  background: linear-gradient(135deg, #fff 60%, #b6f0ff 100%);
+  transition: background 0.4s;
+}
+.ServBox:hover .ServName,
+.ServBox:hover .Info,
+.ServBox:hover .ViewMore {
+  color: #111;
+}
+.ServBox:hover .Bar {
+  background: #111;
+}
+
 @media (max-width: 1200px) {
   .services-box { max-width: 1000px; }
   .ServBox { max-width: 100%; }

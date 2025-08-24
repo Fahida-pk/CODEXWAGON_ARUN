@@ -25,7 +25,8 @@ const ContactForm = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5003/api/contact", {
+      const apiBase = import.meta.env.VITE_API_BASE || "";
+      const response = await fetch(`${apiBase}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -34,7 +35,7 @@ const ContactForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success(data.message || "Your message has been sent!", { position: "top-right" });
+        toast.success("Thanks for contacting us! We will be in touch with you shortly.", { position: "top-right" });
         setFormData({ name: "", phone: "", email: "", service: "", message: "" });
       } else {
         toast.error(data.message || "Something went wrong!", { position: "top-right" });
@@ -49,7 +50,6 @@ const ContactForm = () => {
 
   return (
     <section className="contact-section">
-      {/* Left Side */}
       <div className="contact-left">
         <div className="logo-text">
           <span className="big-d">D</span>
@@ -71,60 +71,25 @@ const ContactForm = () => {
         </div>
       </div>
 
-      {/* Right Side */}
       <div className="contact-right">
         <h2>LET'S GET STARTED NOW!</h2>
         <form className="contact-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="NAME*"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="phone"
-            placeholder="PHONE*"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="EMAIL*"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <select
-            name="service"
-            value={formData.service}
-            onChange={handleChange}
-            required
-          >
+          <input type="text" name="name" placeholder="NAME*" value={formData.name} onChange={handleChange} required />
+          <input type="text" name="phone" placeholder="PHONE*" value={formData.phone} onChange={handleChange} required />
+          <input type="email" name="email" placeholder="EMAIL*" value={formData.email} onChange={handleChange} required />
+          <select name="service" value={formData.service} onChange={handleChange} required>
             <option value="">SELECT A SERVICE</option>
             <option>Web Development</option>
             <option>Digital Marketing</option>
             <option>Branding</option>
             <option>SEO</option>
           </select>
-          <textarea
-            name="message"
-            placeholder="HOW CAN WE HELP YOU?"
-            rows="3"
-            value={formData.message}
-            onChange={handleChange}
-          ></textarea>
+          <textarea name="message" placeholder="HOW CAN WE HELP YOU?" rows="3" value={formData.message} onChange={handleChange}></textarea>
           <button type="submit" disabled={loading}>
             {loading ? "SENDING..." : "SUBMIT"}
           </button>
         </form>
       </div>
-
-      {/* Toast Container */}
       <ToastContainer />
     </section>
   );
