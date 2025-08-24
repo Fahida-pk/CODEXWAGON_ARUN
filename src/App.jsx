@@ -7,6 +7,7 @@ import OurStoryPage from "./Modal/OurStoryPage.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import LiveChat from "./components/Chat/LiveChat.jsx";
 
+import ScrollPopup from "./components/ScrollPopup/ScrollPopup.jsx";
 
 import './index.css';
 
@@ -22,7 +23,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
- 
+       <ScrollPopup />
+
       <Footer />
       <LiveChat />
     </div>

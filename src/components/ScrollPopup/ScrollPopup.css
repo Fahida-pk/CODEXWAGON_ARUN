@@ -1,0 +1,116 @@
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup-container {
+  background: #fff;
+  display: flex;
+  width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  color: #444;
+}
+
+.popup-left {
+  width: 45%;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-left img {
+  max-width: 100%;
+  height: auto;
+}
+
+.popup-right {
+  width: 55%;
+  padding: 30px;
+}
+
+.popup-right h2 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.popup-right .highlight {
+  color: #f7c600;
+}
+
+.subtext {
+  color: #e91e63;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.desc {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.phone-input {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 15px;
+}
+
+.phone-input img {
+  width: 24px;
+  margin-right: 8px;
+}
+
+.phone-input span {
+  margin-right: 8px;
+  color: #333;
+  font-weight: bold;
+}
+
+.phone-input input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 8px 0;
+  font-size: 16px;
+}
+
+.submit-btn {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #7b1fa2;
+  color: #7b1fa2;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #7b1fa2;
+  color: #fff;
+}
