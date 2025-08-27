@@ -1,4 +1,4 @@
-.mega-menu-overlay {
+.mega-menu-overlay { 
   position: fixed;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: stretch;
-  animation: slideIn 0.8s ease forwards; /* Slow motion */
+  animation: slideIn 0.8s ease forwards;
 }
 
 @keyframes slideIn {
@@ -38,7 +38,6 @@
   }
 }
 
-
 .mega-menu-container {
   display: flex;
   width: 100%;
@@ -48,19 +47,19 @@
 
 /* Left Section */
 .mega-menu-left {
-  width: 25%;
+  width: 30%;
   background: #111;
   color: #fff;
-  padding: 40px 30px;
+  padding: 60px 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 .menu-links {
@@ -69,35 +68,54 @@
 }
 
 .menu-links li {
-  font-size: 16px;
-  margin-bottom: 15px;
+  font-size: 20px;
+  margin-bottom: 20px;
   cursor: pointer;
   transition: color 0.3s;
+  border-bottom: none !important; /* remove line */
 }
 
+.menu-links li.active,
 .menu-links li:hover {
   color: #fbc531;
+  border-bottom: none !important; /* remove line from hover/active also */
+}
+
+
+.menu-links li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #fbc531;
+  transition: width 0.3s;
+}
+
+.menu-links li:hover::after {
+  width: 100%;
 }
 
 .contact-info {
-  margin-top: 30px;
-  font-size: 14px;
+  margin-top: 40px;
+  font-size: 16px;
   border-top: 1px solid #333;
-  padding-top: 20px;
+  padding-top: 25px;
 }
 
 .contact-info p {
-  margin: 8px 0;
+  margin: 10px 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .social-icons {
   display: flex;
-  gap: 15px;
-  font-size: 18px;
-  margin-top: 20px;
+  gap: 20px;
+  font-size: 22px;
+  margin-top: 25px;
 }
 
 .social-icons svg {
@@ -111,8 +129,8 @@
 
 /* Right Section */
 .mega-menu-right {
-  width: 75%;
-  padding: 30px;
+  width: 70%;
+  padding: 60px 50px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -120,44 +138,65 @@
 
 .close-btn {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 14px;
+  top: 40px;
+  right: 80px;
+  font-size: 28px;
+  font-weight: 500;
   background: none;
   border: none;
-  font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #333;
 }
+
+/* Add yellow line on right side */
+
 
 .service-columns {
   display: flex;
   justify-content: space-between;
-  margin-top: 80px;
+  margin-top: 100px;
   border-left: 1px solid #eee;
 }
 
 .service-column {
-  width: 22%;
+  width: 23%;
   border-right: 1px solid #eee;
-  padding: 0 15px;
+  padding: 20px 30px;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .service-column:last-child {
   border-right: none;
 }
 
-.service-icon {
-  font-size: 40px;
-  margin-bottom: 15px;
+.service-column:hover {
+  background: #f9f9f9;
+  transform: translateY(-5px);
+}
+
+.service-icon img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.service-column:hover .service-icon img {
+  transform: scale(1.15);
+  filter: drop-shadow(0 4px 12px rgba(0, 123, 255, 0.4));
 }
 
 .service-column h3 {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .service-column ul {
@@ -166,8 +205,8 @@
 }
 
 .service-column ul li {
-  font-size: 15px;
-  margin-bottom: 8px;
+  font-size: 18px;
+  margin-bottom: 12px;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -176,6 +215,7 @@
   color: #007bff;
 }
 
+/* Responsive */
 @media (max-width: 1024px) {
   .mega-menu-container {
     flex-direction: column;
@@ -185,10 +225,11 @@
   }
   .service-columns {
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
   }
   .service-column {
     border-right: none;
     border-bottom: 1px solid #eee;
+    width: 100%;
   }
 }

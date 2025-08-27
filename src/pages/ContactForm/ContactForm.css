@@ -1,19 +1,34 @@
+/* Import Poppins font */
+@font-face {
+  font-family: "PoppinsCustom";
+  src: url("https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* === GENERAL SECTION === */
 .contact-section {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: #f7c600; /* yellow */
-  padding: 60px 80px 140px;
-  position: relative;
+  padding: 100px 60px;
+  background-color: #ffcb02;
   font-family: "Poppins", sans-serif;
+  color: #000;
+  width: 100%;
+  min-height: 750px;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
-/* Left Side */
-.contact-left {
+/* === LEFT COLUMN === */
+.left-column {
   flex: 1;
-  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   position: relative;
+  padding-left: 40px;
 }
 
 .logo-text {
@@ -23,48 +38,88 @@
 }
 
 .big-d {
-  font-size: 120px;
+  font-size: 150px;
   font-weight: 900;
-  line-height: 1;
+  line-height: 120px;
+  color: black;
 }
 
 .ddd-text {
   font-size: 24px;
   font-weight: 700;
-  line-height: 1.4;
-  margin-top: 18px;
+  margin-top: 15px;
+  line-height: 32px;
 }
 
 .smart {
-  font-size: 75px;
+  font-size: 85px;
   font-weight: 900;
-  margin-left: 18px;
+  margin-left: 20px;
   color: #fff;
 }
 
 .info {
   display: flex;
   align-items: center;
-  gap: 12px;
   font-size: 18px;
   font-weight: 600;
-  margin-top: 20px;
+  margin-top: 25px;
+  gap: 10px;
+}
+
+.info img {
+  width: 24px;
+  height: auto;
+}
+.info a {
+  color: inherit;       /* same color as parent text */
+  text-decoration: none;
+}
+
+.info a:hover {
+ 
+  color: #fff;          /* white color */
+  /* remove underline */
+  cursor: pointer;       /* show hand icon */
 }
 
 
-/* Right Side */
-.contact-right {
+
+/* Floating Cup */
+.cup-box {
+  position: absolute;
+  top: 350px;
+  left: 20px;
+  width: 500px;
+  height: 50px;
+  animation: floatCup 2s ease-in-out infinite;
+}
+
+.cup-box img {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes floatCup {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* === RIGHT COLUMN === */
+.right-column {
   flex: 1.2;
   padding-left: 60px;
 }
-
-.contact-right h2 {
-  font-size: 36px;
+ 
+.right-column h2 {
+  font-size: 48px;
   font-weight: 800;
+  color: white;
   margin-bottom: 40px;
-  color: #fff;
 }
 
+/* === FORM === */
 .contact-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -89,19 +144,84 @@
   min-height: 100px;
 }
 
+/* === Phone Input === */
+.phone-input {
+  height: 55px;
+  font-size: 26px;
+  padding-left: 50px !important;
+}
+
+.phone-flag-dropdown {
+  position: absolute !important;
+  left: 10px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 35px !important;
+  height: 25px !important;
+  border: none !important;
+  background: none !important;
+}
+
+.phone-dropdown {
+  font-size: 14px;
+}
+
+.react-tel-input .selected-flag {
+  height: 10px !important;
+  width: 75px !important;
+  font-weight: 500 !important;
+}
+
+.react-tel-input .form-control {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid #000 !important;
+  border-radius: 0 !important;
+  color: #000 !important;
+  width: 100% !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  padding: 12px 5px 12px 48px !important;
+  box-shadow: none !important;
+}
+
+.react-tel-input .flag-dropdown,
+.react-tel-input .selected-flag {
+  background: transparent !important;
+  border: none !important;
+}
+
+.react-tel-input .country-list {
+  color: #000 !important;
+}
+
+/* === BUTTON === */
 .contact-form button {
   grid-column: 1 / 3;
   margin-top: 20px;
-  padding: 14px 20px;
+  padding: 12px 24px;
   border: none;
   background: #fff;
   color: #000;
   font-weight: 700;
   cursor: pointer;
   transition: 0.3s;
+  width: fit-content;
+  min-width: 180px;
 }
-
 .contact-form button:hover {
   background: #000;
   color: #fff;
 }
+/* Chrome, Safari, Edge */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #f4c400 inset !important; /* yellow background */
+  -webkit-text-fill-color: #000 !important; /* black text */
+}
+
+/* On focus after autofill */
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #f4c400 inset !important;
+  -webkit-text-fill-color: #000 !important;
+}
+

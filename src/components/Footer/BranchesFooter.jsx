@@ -32,8 +32,8 @@ export default function BranchesFooter() {
           </div>
           <div className="contact-box">
             <span className="contact-icon">📱</span>
-            <a href="tel:+919645230861" className="contact-link">
-              +91 9645230861
+            <a href="tel:+91 99619 59788" className="contact-link">
+              +91 99619 59788
             </a>
           </div>
         </div>

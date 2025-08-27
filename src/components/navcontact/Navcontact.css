@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+.brush-heading {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 15rem;
+   font-weight: bold;
+  background: linear-gradient(90deg, #06b6d4, #8b5cf6, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

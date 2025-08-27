@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import MegaMenu from "../MegaMenu/MegaMenu.jsx";
 import "./Navbar.css";
 
@@ -11,9 +11,10 @@ export default function Navigation() {
   const [showMegaMenu, setShowMegaMenu] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === "/";
 
-  // Scroll behavior for navbar
+  // ✅ Scroll behavior for hiding/showing navbar
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
@@ -36,13 +37,25 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScroll]);
 
+  // ✅ Navbar links
   const links = [
     { id: "ourstory", label: "Our Story", path: "/ourstory" },
     { id: "services", label: "Our Services", path: "#" },
-    { id: "Our Approach", label: "Our Approach", path: "/ServiceShowcase" },
-    { id: "careers", label: "Careers", path: "/careers" },
-    { id: "contact", label: "Contact", path: "/contact" },
+    { id: "ourapproach", label: "Our Approach", path: "/our-approach" },
+    { id: "career", label: "Careers", path: "/career" }, // 🔑 lowercase path
+    { id: "navcontact", label: "Contact", path: "/contact" },
   ];
+
+  // ✅ Handle navigation
+  const handleNavClick = (link) => {
+    setMenuOpen(false);
+
+    if (link.id === "services") {
+      setShowMegaMenu(!showMegaMenu);
+    } else {
+      navigate(link.path);
+    }
+  };
 
   return (
     <>
@@ -51,12 +64,14 @@ export default function Navigation() {
           isHome ? "home" : "inner"
         } ${showMegaMenu ? "mega-open" : ""}`}
       >
+        {/* Logo */}
         <div className="navbar-logo">
           <Link to="/" className="brand">
             CODEXWAGON
           </Link>
         </div>
 
+        {/* Links */}
         <ul className={`navbar-links ${menuOpen ? "open" : ""}`}>
           {links.map((link) => (
             <li key={link.id}>
@@ -70,8 +85,7 @@ export default function Navigation() {
               ) : (
                 <Link
                   to={link.path}
-                  className={location.pathname === link.path ? "active" : ""}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => handleNavClick(link)} // ❌ removed preventDefault
                 >
                   {link.label}
                 </Link>
@@ -80,9 +94,14 @@ export default function Navigation() {
           ))}
         </ul>
 
+        {/* Mobile menu toggle */}
         <div
           className={`navbar-menu ${menuOpen ? "active" : ""}`}
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => {
+  setMenuOpen(!menuOpen);
+  setShowMegaMenu(!showMegaMenu);
+}}
+
         >
           <span></span>
           <span></span>
@@ -90,7 +109,7 @@ export default function Navigation() {
         </div>
       </header>
 
-      {/* ✅ Mega Menu Component */}
+      {/* Mega Menu */}
       {showMegaMenu && <MegaMenu onClose={() => setShowMegaMenu(false)} />}
     </>
   );

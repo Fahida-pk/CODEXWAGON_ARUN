@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
+const API_BASE =
+  (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_BASE) ||
+  process.env.REACT_APP_API_BASE ||
+  "http://localhost:5000"; // change to your API origin in prod
 
 const ScrollPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const hasShown = sessionStorage.getItem("popupShown");
@@ -17,18 +26,57 @@ const ScrollPopup = () => {
         window.removeEventListener("scroll", handleScroll);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSubmit = (e) => {
+  const validatePhone = () => {
+    const digits = (phone || "").replace(/\D/g, "");
+    if (digits.length < 10 || digits.length > 15) {
+      setError("Please enter a valid phone number.");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!phone.trim()) return;
-    setSubmitted(true);
-    setTimeout(() => {
-      setShowPopup(false);
-    }, 2500); // auto-close after 2.5 sec
+    if (!validatePhone()) return;
+
+    setLoading(true);
+    setError("");
+
+    const cleanPhone = phone.replace(/\D/g, "");
+    const payload = {
+      name: "Popup Lead",
+      email: "lead@codexwagon.in",
+      phone: cleanPhone,
+      service: "scroll_popup",
+      message: `Scroll popup lead. Phone: ${cleanPhone}`,
+    };
+
+    try {
+      const res = await fetch(`${API_BASE}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.message || "Request failed");
+      }
+
+      setSubmitted(true);
+      setTimeout(() => setShowPopup(false), 2500);
+    } catch (err) {
+      console.error("Submit error:", err);
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -41,91 +89,147 @@ const ScrollPopup = () => {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-white rounded-lg shadow-xl max-w-4xl w-[90%] flex flex-col md:flex-row relative overflow-hidden"
+            className="bg-white rounded-lg shadow-2xl max-w-4xl w-[90%] flex relative overflow-hidden"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
           >
-            {/* Close Button */}
+            {/* CLOSE BUTTON */}
             <button
               onClick={() => setShowPopup(false)}
-              className="absolute top-3 right-4 text-gray-700 hover:text-black text-3xl font-bold z-10"
+              className="absolute top-5 right-4 text-gray-700 hover:text-black text-3xl font-bold z-10"
             >
               ×
             </button>
 
-            {/* Left Yellow Section */}
-            <div className="relative bg-yellow-300 w-full md:w-2/5 flex items-center justify-center p-6">
+            {/* LEFT IMAGE + SHAPES */}
+            <div className="relative bg-yellow-300 flex items-end justify-center overflow-hidden w-1/3">
+              {/* Floating Circle */}
+              <motion.div
+                className="absolute top-10 left-10 w-10 h-10 bg-white rounded-full"
+                animate={{ y: [0, 20, 0], x: [0, -20, 0] }}
+                transition={{ duration: 5, repeat: Infinity }}
+              />
+              <motion.div
+                className="absolute bottom-10 right-10 w-6 h-6 bg-purple-500 rounded-full"
+                animate={{ y: [0, -15, 0], x: [0, 15, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+              />
+
+              {/* Outline Triangles */}
+              <motion.div
+                className="absolute top-20 right-12 w-0 h-0 
+                           border-l-[18px] border-r-[18px] border-b-[32px] 
+                           border-l-transparent border-r-transparent border-b-transparent relative"
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              >
+                <div
+                  className="absolute top-0 left-0 
+                             border-l-[18px] border-r-[18px] border-b-[32px] 
+                             border-l-transparent border-r-transparent border-b-white"
+                />
+              </motion.div>
+
+              <motion.div
+                className="absolute bottom-20 left-12 w-0 h-0 
+                           border-l-[22px] border-r-[22px] border-b-[38px] 
+                           border-l-transparent border-r-transparent border-b-transparent relative"
+                animate={{ rotate: [360, 0] }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              >
+                <div
+                  className="absolute top-0 left-0 
+                             border-l-[22px] border-r-[22px] border-b-[38px] 
+                             border-l-transparent border-r-transparent border-b-purple-500"
+                />
+              </motion.div>
+
+              {/* Person Image */}
               <img
                 src="https://www.intersmartsolution.com/wp-content/uploads/2025/04/initialPop-1-1_11zon.png"
                 alt="Business"
-                className="max-h-[1000px] object-contain"
+                className="inline-block align-middle w-[330px] h-[520px] object-contain object-bottom relative z-10"
               />
-
-              {/* Animated Triangle */}
-              <motion.div
-                className="absolute top-6 right-[-10px] border-l-[15px] border-r-[15px] border-b-[20px] border-l-transparent border-r-transparent border-b-yellow-400"
-                animate={{
-                  y: [0, -10, 0], // move up and down
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              ></motion.div>
-
-              {/* Circle Animation */}
-              <motion.div
-                className="absolute bottom-6 right-6 w-5 h-5 border-2 border-white rounded-full"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [1, 0.6, 1],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              ></motion.div>
             </div>
 
-            {/* Right Content */}
-            <div className="w-full md:w-3/5 p-8">
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-3 text-gray-900 leading-snug">
+            {/* RIGHT FORM + SHAPES */}
+            <div className="w-2/3 p-8 bg-white relative flex flex-col justify-center">
+              {/* Floating Shapes Right Side */}
+              <motion.div
+                className="absolute top-10 right-10 w-8 h-8 bg-yellow-300 rounded-full"
+                animate={{ y: [0, -20, 0], x: [0, 20, 0] }}
+                transition={{ duration: 6, repeat: Infinity }}
+              />
+           <motion.div
+  className="absolute bottom-10 right-10 w-8 h-8 rounded-full border-2 border-yellow-300"
+  animate={{ y: [0, -20, 0], x: [0, 20, 0] }}
+  transition={{ duration: 6, repeat: Infinity }}
+/>
+
+
+              <motion.div
+                className="absolute bottom-12 right-16 w-0 h-0 
+                           border-l-[20px] border-r-[20px] border-b-[36px] 
+                           border-l-transparent border-r-transparent border-b-transparent relative"
+                animate={{ rotate: [0, -360] }}
+                transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
+              >
+                <div
+                  className="absolute top-0 left-0 
+                             border-l-[20px] border-r-[20px] border-b-[36px] 
+                             border-l-transparent border-r-transparent border-b-purple-500"
+                />
+              </motion.div>
+
+              {/* Text + Form */}
+              <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black leading-snug">
                 Ready To Take Your Business To The{" "}
                 <span className="text-yellow-500">Next Level?</span>
               </h2>
-              <p className="text-pink-500 text-lg mb-2 font-semibold">
+
+              <p className="text-pink-600 text-lg mb-2 font-bold">
                 7,839,684 leads & counting.
               </p>
-              <div className="w-16 h-[3px] bg-yellow-500 mb-3"></div>
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="150" height="15" viewBox="0 0 100 10" className="mb-4">
+                <path d="M0,5 Q50,15 100,5" stroke="#FFD200" strokeWidth="3" fill="transparent" />
+              </svg>
+
               <p className="text-gray-700 mb-5">
                 Fill out & <strong>Get a Call Back in 30 Minutes</strong>
               </p>
 
               {!submitted ? (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="flex items-center border-b-2 border-gray-700 pb-2">
-                    <img
-                      src="https://www.intersmartsolution.com/wp-content/uploads/2023/11/India.png"
-                      alt="India"
-                      className="w-6 h-4 mr-2"
-                    />
-                    <input
-                      type="tel"
-                      placeholder="PHONE*"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full outline-none text-lg"
-                      required
-                    />
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="w-[350px]">
+                    <div className="border-b-2 border-black focus-within:border-yellow-500">
+                      <PhoneInput
+                        country={"in"}
+                        value={phone}
+                        onChange={(value) => setPhone(value)}
+                        inputProps={{ required: true }}
+                        inputClass="!w-full !text-lg !border-0 !rounded-none !outline-none"
+                        buttonClass="!border-0 !bg-transparent"
+                        countryCodeEditable={false}
+                        enableSearch={true}
+                        dropdownStyle={{
+                          maxHeight: "200px",
+                          overflowY: "auto",
+                          zIndex: 9999,
+                        }}
+                      />
+                    </div>
                   </div>
+
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
+
                   <button
                     type="submit"
-                    className="w-full border-2 border-purple-500 text-purple-600 py-3 rounded-md hover:bg-purple-600 hover:text-white transition font-semibold"
+                    disabled={loading}
+                    className="px-10 py-2 border-2 border-purple-500 text-purple-600 rounded-md hover:bg-purple-600 hover:text-white transition font-semibold disabled:opacity-60"
                   >
-                    SUBMIT
+                    {loading ? "Sending..." : "SUBMIT"}
                   </button>
                 </form>
               ) : (

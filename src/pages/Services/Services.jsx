@@ -5,43 +5,81 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// ✅ Detailed Services Data (SEO friendly with Kerala focus)
+// ✅ Define API Base from .env
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5001";
+
+// ✅ Detailed Services Data (SEO friendly)
 const services = [
-  {
-    title: "Digital Marketing",
-    description:
-      "Maximize ROI with comprehensive digital marketing services, including social media management, PPC, and email marketing. Increase your brand visibility and customer base with the best digital marketing services.",
-    icon: <img src="https://www.intersmartsolution.com/wp-content/uploads/2023/11/DigitalMarketing.svg" alt="Digital Marketing" width="67" height="63" loading="lazy" />, 
-    link: "https://intersmartsolution.com/digital-marketing/"
-  },
+ {
+  title: "Cloud Computing",
+  description:
+    "Leverage scalable and secure cloud computing solutions to enhance flexibility, reduce costs, and drive innovation. Optimize your business operations with cloud migration, storage, and managed services.",
+  icon: (
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/3796/3796815.png"
+      alt="Cloud Computing"
+      width="67"
+      height="63"
+      loading="lazy"
+    />
+  ),
+  link: `${API_BASE}/cloud-computing/`,
+},
+
+
+
   {
     title: "Mobile Application",
     description:
       "Boost engagement with high-performing, feature-packed mobile apps for Android and iOS that drive digital transformation. Build the best mobile applications for all your needs with App development genies at Inter Smart.",
-    icon: <img src="https://www.intersmartsolution.com/wp-content/uploads/2023/11/MobApp.svg" alt="Mobile Application" width="67" height="63" loading="lazy" />, 
-    link: "https://intersmartsolution.com/mobile-app-development/"
+    icon: (
+      <img
+        src="https://www.intersmartsolution.com/wp-content/uploads/2023/11/MobApp.svg"
+        alt="Mobile Application"
+        width="67"
+        height="63"
+        loading="lazy"
+      />
+    ),
+    link: `${API_BASE}/mobile-app-development/`,
   },
   {
     title: "Search Engine Optimization",
     description:
       "Dominate search engine results with effective SEO campaigns tailored to your business goals and target audience. Rank your website on top search engine results and stand out among competitors.",
-    icon: <img src="https://www.intersmartsolution.com/wp-content/uploads/2025/01/seo.png" alt="SEO" width="67" height="63" loading="lazy" />, 
-    link: "https://intersmartsolution.com/seo/"
+    icon: (
+      <img
+        src="https://www.intersmartsolution.com/wp-content/uploads/2025/01/seo.png"
+        alt="SEO"
+        width="67"
+        height="63"
+        loading="lazy"
+      />
+    ),
+    link: `${API_BASE}/seo/`,
   },
   {
     title: "Web Development",
     description:
       "Boost your online presence with custom web development, intuitive design, and responsive layouts for all devices. Connect with your audience, generate leads and grow with a powerful website.",
-    icon: <img src="https://www.intersmartsolution.com/wp-content/uploads/2023/11/WebDev.svg" alt="Web Development" width="67" height="63" loading="lazy" />, 
-    link: "https://intersmartsolution.com/web-development/"
-  }
+    icon: (
+      <img
+        src="https://www.intersmartsolution.com/wp-content/uploads/2023/11/WebDev.svg"
+        alt="Web Development"
+        width="67"
+        height="63"
+        loading="lazy"
+      />
+    ),
+    link: `${API_BASE}/web-development/`,
+  },
 ];
 
 export default function Services() {
   return (
     <section className="services-section">
       <div className="services-box">
-        {/* ✅ Heading with Motion like Intersmart */}
+        {/* ✅ Heading with Motion */}
         <motion.h2
           className="section-heading"
           initial={{ opacity: 0, y: 40 }}
@@ -66,7 +104,7 @@ export default function Services() {
           </motion.span>
         </motion.h2>
 
-        {/* ✅ Services Cards with react-slick Carousel */}
+        {/* ✅ Services Cards Carousel */}
         <Slider
           className="services-carousel"
           dots={false}
@@ -77,14 +115,8 @@ export default function Services() {
           autoplay={true}
           autoplaySpeed={2500}
           responsive={[
-            {
-              breakpoint: 1000,
-              settings: { slidesToShow: 2 }
-            },
-            {
-              breakpoint: 600,
-              settings: { slidesToShow: 1 }
-            }
+            { breakpoint: 1000, settings: { slidesToShow: 2 } },
+            { breakpoint: 600, settings: { slidesToShow: 1 } },
           ]}
         >
           {services.map((service, index) => (
@@ -92,27 +124,35 @@ export default function Services() {
               key={index}
               className="ServBox WebDev"
               href={service.link}
-              style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
+              style={{
+                display: "block",
+                textDecoration: "none",
+                color: "inherit",
+              }}
             >
-              <div className="Icon">
-                {/* Replace with <img> if you have icons, else keep emoji */}
-                {service.icon}
-              </div>
+              <div className="Icon">{service.icon}</div>
               <div className="ServName">
-                {service.title.split(' in ')[0].includes('Development') ? (
+                {service.title.includes("Development") ? (
                   <>
-                    {service.title.split(' in ')[0].split('Development')[0]}
+                    {service.title.replace("Development", "")}
                     <br />
                     Development
                   </>
                 ) : (
-                  service.title.split(' in ')[0]
+                  service.title
                 )}
               </div>
-              <div className="Bar" style={{ height: 4, background: '#00bfff', borderRadius: 2, margin: '12px auto', width: 60 }}></div>
-              <div className="Info">
-                {service.description}
-              </div>
+              <div
+                className="Bar"
+                style={{
+                  height: 5,
+                  background: "#00bfff",
+                  borderRadius: 2,
+                  margin: "12px auto",
+                  width: 60,
+                }}
+              ></div>
+              <div className="Info">{service.description}</div>
               <div className="ViewMore">
                 <span>View more</span>
                 <span style={{ marginLeft: 6 }}>+</span>

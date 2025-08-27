@@ -1,8 +1,12 @@
 body {
+ 
   margin: 0;
+  padding: 0;
   height:100%;
   width: 100%;
   font-family: Arial, sans-serif;
+  overflow-y: auto;   /* Only one vertical scroll */
+  overflow-x: hidden;
   background-color:rgb(255, 255, 255);
   /* Scrollbar track (background) */
 
@@ -11,11 +15,12 @@ body {
 }
 
 .app {
-  padding: 10px;
+  padding: 0px;
 }
 /* Clean Scrollbar - No arrows, no blue thumb */
+
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 2px;
   height: 3px;
 }
 

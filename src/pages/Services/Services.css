@@ -55,22 +55,42 @@
 /* ===== Single Card ===== */
 .service-card {
   background: #fff;
-  padding: 80px 25px;
-  border-radius: 16px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  text-align: center;
-  height: 100%;
-  border: 1px solid transparent;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .service-card:hover {
-  background: linear-gradient(145deg, #e6f5ff, #ffffff);
-  transform: translateY(-10px);
-  border: 1px solid transparent;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  background-color: #e6f7ff; /* optional hover bg */
+  cursor: pointer;  /* ✅ hand pointer */
 }
+.service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;   /* starting point */
+  height: 100%;
+  background: #c6f3ff; /* Blue shade */
+  transition: width 0.4s ease;
+  z-index: 0;
+}
+
+.service-card:hover::before {
+  width: 100%;  /* slide full */
+  height: 100%;
+  
+}
+
+
+.service-card * {
+  position: relative;
+  z-index: 1;
+}
+
 
 /* ===== Card Content ===== */
 .service-card .icon {
@@ -103,6 +123,7 @@
 
 .service-card a:hover {
   color: #0088cc;
+    cursor: pointer;
   
 }
 
@@ -160,9 +181,9 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-weight: 600;
-  color: #19b5fe;
-  font-size: 16px;
+  font-weight: 300;
+  color: black;
+  font-size: 12px;
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: color 0.2s;
@@ -171,6 +192,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
 }
+
 .ViewMore span:last-child {
   font-size: 22px;
   font-weight: 700;
@@ -190,25 +212,32 @@
   align-items: flex-start;
   padding: 38px 32px 32px 32px;
   margin: 0;
-  min-height: 410px;
+  min-height: 460px;  /* fixed uniform height */
   max-width: 340px;
   width: 100%;
-  transition: box-shadow 0.3s, transform 0.3s, border 0.3s, background 0.3s;
+  transition: all 0.8s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: space-between;
 }
+
+
+
 .ServBox:hover {
   background: #b6f0ff;
   color: #222;
-  transform: translateX(22px) scaleY(1.09);
-  min-height: 460px;
-  box-shadow: 0 24px 64px 0 rgba(0,191,255,0.18), 0 0 0 4px #e3f2fd;
+  transform: translateY(-20px) scale(1.02); /* mukalilottu move + scale */
+  box-shadow: 0 20px 40px rgba(0, 191, 255, 0.18), 0 0 0 4px #e3f2fd;
   z-index: 2;
-  padding-bottom: 48px;
+  height: 100%;
+  cursor: pointer;
 }
+
+
 .ServBox:hover .Icon {
-  background: linear-gradient(135deg, #fff 60%, #b6f0ff 100%);
-  transition: background 0.4s;
+  background: linear-gradient(235deg, #fff 100%, #b6f0ff 100%);
+  transition: background 1s;
 }
 .ServBox:hover .ServName,
 .ServBox:hover .Info,

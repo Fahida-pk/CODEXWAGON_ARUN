@@ -64,11 +64,7 @@ export default function OurStory() {
             <strong>cloud services</strong>, and 
             <strong>AI-powered solutions</strong>. With a focus on innovation and
             performance, we help businesses build scalable digital platforms that
-            transform ideas into impactful experiences.
-          </p>
-
-          <p>
-            We design and deliver scalable websites, user-friendly mobile applications, 
+            transform ideas into impactful experiences. We design and deliver scalable websites, user-friendly mobile applications, 
             and secure cloud infrastructures that create powerful digital experiences. 
             Our expertise in <strong>AI solutions</strong> and <strong>business automation in Kerala</strong> 
             ensures that your brand stays competitive and future-ready.
