@@ -80,13 +80,14 @@ export default function MegaMenu({ onClose }) {
             CODEXWAGON
           </h2>
 
-          <ul className="menu-links">
-            <li onClick={() => handleNavigate("/")}>HOME</li>
-            <li onClick={() => handleNavigate("/about")}>ABOUT US</li>
-            <li onClick={() => handleNavigate("/careers")}>CAREERS</li>
-            <li onClick={() => handleNavigate("/approach")}>OUR APPROACH</li>
-            <li onClick={() => handleNavigate("/contact")}>CONTACT</li>
-          </ul>
+         <ul className="menu-links">
+  <li onClick={() => handleNavigate("/")}>HOME</li>
+  <li onClick={() => handleNavigate("/ourstory")}>ABOUT US</li>
+  <li onClick={() => handleNavigate("/Career")}>CAREERS</li>
+  <li onClick={() => handleNavigate("/our-approach")}>OUR APPROACH</li>
+  <li onClick={() => handleNavigate("/contact")}>CONTACT</li>
+</ul>
+
 
           <div className="contact-info">
             <p>Talk to our expert today</p>
