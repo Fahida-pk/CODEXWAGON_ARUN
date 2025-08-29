@@ -4,11 +4,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  font-weight: 800;
+  font-weight: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 80px;
+  padding: 30px 90px;
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -29,13 +29,30 @@
 
 /* Brand text */
 .navbar-logo .brand {
-  font-size: 2rem;
-  font-weight: 1000;
+  font-size: 3rem;         
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
   text-decoration: none;
-  transition: color 0.3s;
+
+  /* 3D shadow effect */
+  text-shadow: 2px 2px 0 #000,
+               4px 4px 0 #555,
+               6px 6px 8px rgba(0, 0, 0, 0.6);
+
+  transition: all 0.3s ease;
 }
 
-/* HOME PAGE → default white, scrolled black */
+/* Hover → Glow effect */
+.navbar-logo .brand:hover {
+  color: #facc15; 
+  text-shadow: 2px 2px 10px rgba(250, 204, 21, 0.8),
+               4px 4px 15px rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+/* HOME PAGE */
 .navbar.home .navbar-logo .brand {
   color: #fff;
 }
@@ -57,7 +74,7 @@
   color: #222;
 }
 
-/* INNER PAGES → always black */
+/* INNER PAGES */
 .navbar.inner .navbar-logo .brand {
   color: #222;
 }
@@ -77,6 +94,10 @@
   gap: 40px;
 }
 
+.navbar-links li {
+  position: relative; /* underline position fix */
+}
+
 .navbar-links li a,
 .navbar-links li .mega-menu-btn {
   text-decoration: none;
@@ -94,15 +115,27 @@
 .navbar.inner .navbar-links li a:hover,
 .navbar.inner .navbar-links li a.active,
 .navbar.inner .navbar-links li .mega-menu-btn:hover {
-  color: #facc15 !important;  /* yellow */
-  transform: translateY(-4px); /* slight lift */
+  color: #facc15 !important;
+  transform: translateY(-4px);
   font-weight: 600;
 }
 
-/* Remove underline effect */
+/* Animated underline effect */
 .navbar-links li a::after,
 .navbar-links li .mega-menu-btn::after {
-  display: none;
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: #facc15;
+  transition: width 0.3s ease;
+}
+
+.navbar-links li a:hover::after,
+.navbar-links li .mega-menu-btn:hover::after {
+  width: 100%;
 }
 
 /* Hamburger Menu */

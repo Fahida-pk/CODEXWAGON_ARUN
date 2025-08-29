@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./MainBanner.css";
 
 const images = [
-  "/assets/images/image1.jpg",
-   
-  "/assets/images/image3.jpg",
+   "/assets/images/image3.jpg",
   "/assets/images/image4.jpg",
-  "/assets/images/image5.jpg",
-  "/assets/images/image6.jpg",
-  "/assets/images/image7.jpg",
-  
+ "/assets/images/image.png",
+  "/assets/images/seo.webp",
+  "/assets/images/image1.png",
+ 
 ];
 
 const MainBanner = () => {

@@ -5,8 +5,7 @@ import MainBanner from "../../components/Navigation/MainBanner.jsx";
 import Navigation from "../../components/Navigation/Navbar.jsx"; 
 import OurStory from "../OurStory/OurStory.jsx";  // ✅ Correct import
 import Services from "../Services/Services.jsx";
-;
-import Clients from "../clients/Clients.jsx";
+
 import ContactForm from "../ContactForm/ContactForm.jsx";
 import IdeasSection from "../IdeasSection/IdeaSection.jsx";
 import TechnologiesSection from "../ToggleSection/ToggleSection.jsx"
@@ -31,7 +30,7 @@ export default function Home() {
       <OurStory />
       <Services/>
        <HowWeWork/>
-      <Clients/>
+      
       <ContactForm/>
       <IdeasSection/>
       <TechnologiesSection/>

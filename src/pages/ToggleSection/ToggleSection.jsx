@@ -23,7 +23,7 @@ export default function TechnologiesSection() {
       <div className="tech-grid">
         {techs.map((t, i) => (
           <div className="tech-card" key={i}>
-            <img src={t.img} alt="Technology logo" />
+            <img src={t.img} alt={t.name} />
           </div>
         ))}
       </div>
