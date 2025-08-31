@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-import "react-toastify/dist/ReactToastify.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "./ContactForm.css";
@@ -15,6 +13,7 @@ const ContactForm = () => {
   });
 
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,8 +23,10 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // reset errors
+
     if (!validateEmail(formData.email)) {
-      toast.error("Please enter a valid email address.", { position: "top-center" });
+      setError("❌ Please enter a valid email address.");
       return;
     }
 
@@ -42,13 +43,12 @@ const ContactForm = () => {
       if (response.ok) {
         setSuccess(true);
         setFormData({ name: "", phone: "", email: "", service: "", message: "" });
-        toast.success("Thanks for contacting us! We will be in touch shortly.", { position: "top-center" });
       } else {
-        toast.error(data.message || "Something went wrong!", { position: "top-center" });
+        setError(data.message || "❌ Something went wrong!");
       }
     } catch (err) {
       console.error(err);
-      toast.error("Error sending form. Try again later.", { position: "top-center" });
+      setError("❌ Error sending form. Try again later.");
     }
   };
 
@@ -68,15 +68,14 @@ const ContactForm = () => {
           </div>
 
           <div className="info">
-  <img src="/images/mail-icon.png" alt="mail" width="22" />
-  <a href="mailto:achithran@gmail.com">achithran@gmail.com</a>
-</div>
+            <img src="/images/mail-icon.png" alt="mail" width="22" />
+            <a href="mailto:achithran@gmail.com">achithran@gmail.com</a>
+          </div>
 
-<div className="info">
-  <img src="/images/phone1-icon.png" alt="phone" width="22" />
-  <a href="tel:+919961959788">+91 99619 59788</a>
-</div>
-
+          <div className="info">
+            <img src="/images/phone1-icon.png" alt="phone" width="22" />
+            <a href="tel:+919961959788">+91 99619 59788</a>
+          </div>
         </div>
 
         {/* Floating Cup */}
@@ -94,6 +93,8 @@ const ContactForm = () => {
 
         {!success ? (
           <form className="contact-form" onSubmit={handleSubmit}>
+            {error && <p className="error-message">{error}</p>}
+
             <input
               type="text"
               name="name"
@@ -147,13 +148,11 @@ const ContactForm = () => {
           </form>
         ) : (
           <div className="success-box">
-            <h2>Thanks for contacting us!</h2>
+            <h2> Thanks for contacting us!</h2>
             <p>We will be in touch with you shortly.</p>
           </div>
         )}
       </div>
-
-   
     </section>
   );
 };

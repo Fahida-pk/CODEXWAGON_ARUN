@@ -4,10 +4,10 @@ import "./MainBanner.css";
 const images = [
    "/assets/images/image3.jpg",
   "/assets/images/image4.jpg",
- "/assets/images/image.png",
-  "/assets/images/seo.webp",
-  "/assets/images/image1.png",
- 
+ "https://t3.ftcdn.net/jpg/02/14/53/92/360_F_214539232_YnUrtuwUEt84gHuU0qG8l7OwZvH4rnPG.jpg",
+ "https://tse2.mm.bing.net/th/id/OIP.I4pi7F_FHdAKH6YPCUy0dAHaE8?pid=Api&H=106&W=160",
+ "https://projonmodigital.com/wp-content/uploads/2024/09/Most-Effective-SEO-Tips-for-Beginner-Business.jpg",
+"https://octavius.ai/wp-content/uploads/2023/10/1_k4IDvhbuf0rgLkMRml3hcA-scaled.webp",
 ];
 
 const MainBanner = () => {
