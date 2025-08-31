@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-
-const API_BASE =
-  (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_BASE) ||
-  process.env.REACT_APP_API_BASE ||
-  "http://localhost:5001"; // change to your API origin in prod
+import emailjs from "@emailjs/browser";
 
 const ScrollPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -48,31 +44,24 @@ const ScrollPopup = () => {
     setError("");
 
     const cleanPhone = phone.replace(/\D/g, "");
-    const payload = {
-      name: "Popup Lead",
-      email: "lead@codexwagon.in",
-      phone: cleanPhone,
-      service: "scroll_popup",
-      message: `Scroll popup lead. Phone: ${cleanPhone}`,
-    };
 
     try {
-      const res = await fetch(`${API_BASE}/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok || !data?.success) {
-        throw new Error(data?.message || "Request failed");
-      }
+      await emailjs.send(
+        "service_ppa5zul",
+        "template_pg5cnp7",
+        {
+          name: "Popup Lead",
+          email: "lead@codexwagon.in",
+          phone: cleanPhone,
+          message: `Scroll popup lead. Phone: ${cleanPhone}`,
+        },
+        "i5dWSfgCJ9Cv1ejPs"
+      );
 
       setSubmitted(true);
       setTimeout(() => setShowPopup(false), 2500);
     } catch (err) {
-      console.error("Submit error:", err);
+      console.error("EmailJS error:", err);
       setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
@@ -153,36 +142,29 @@ const ScrollPopup = () => {
               />
             </div>
 
-            {/* RIGHT FORM + SHAPES */}
+            {/* RIGHT FORM + EXTRA SHAPES */}
             <div className="w-2/3 p-8 bg-white relative flex flex-col justify-center">
-              {/* Floating Shapes Right Side */}
+              {/* RIGHT DECORATIVE SHAPES */}
               <motion.div
-                className="absolute top-10 right-10 w-8 h-8 bg-yellow-300 rounded-full"
-                animate={{ y: [0, -20, 0], x: [0, 20, 0] }}
-                transition={{ duration: 6, repeat: Infinity }}
-              />
-           <motion.div
-  className="absolute bottom-10 right-10 w-8 h-8 rounded-full border-2 border-yellow-300"
-  animate={{ y: [0, -20, 0], x: [0, 20, 0] }}
+  className="absolute top-10 right-10 w-8 h-8 border-2 border-purple-500 rounded-full"
+  animate={{ y: [0, -20, 0], x: [0, 15, 0] }}
   transition={{ duration: 6, repeat: Infinity }}
 />
 
-
               <motion.div
-                className="absolute bottom-12 right-16 w-0 h-0 
-                           border-l-[20px] border-r-[20px] border-b-[36px] 
-                           border-l-transparent border-r-transparent border-b-transparent relative"
-                animate={{ rotate: [0, -360] }}
-                transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
-              >
-                <div
-                  className="absolute top-0 left-0 
-                             border-l-[20px] border-r-[20px] border-b-[36px] 
-                             border-l-transparent border-r-transparent border-b-purple-500"
-                />
-              </motion.div>
+                className="absolute bottom-10 right-20 w-12 h-12 bg-yellow-400 rounded-full"
+                animate={{ y: [0, 25, 0] }}
+                transition={{ duration: 7, repeat: Infinity }}
+              />
+              <motion.div
+                className="absolute top-1/2 right-5 w-0 h-0 
+                           border-l-[18px] border-r-[18px] border-b-[32px] 
+                           border-l-transparent border-r-transparent border-b-purple-500"
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              />
 
-              {/* Text + Form */}
+              {/* FORM CONTENT */}
               <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-black leading-snug">
                 Ready To Take Your Business To The{" "}
                 <span className="text-yellow-500">Next Level?</span>
@@ -192,8 +174,19 @@ const ScrollPopup = () => {
                 7,839,684 leads & counting.
               </p>
 
-              <svg xmlns="http://www.w3.org/2000/svg" width="150" height="15" viewBox="0 0 100 10" className="mb-4">
-                <path d="M0,5 Q50,15 100,5" stroke="#FFD200" strokeWidth="3" fill="transparent" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="150"
+                height="15"
+                viewBox="0 0 100 10"
+                className="mb-4"
+              >
+                <path
+                  d="M0,5 Q50,15 100,5"
+                  stroke="#FFD200"
+                  strokeWidth="3"
+                  fill="transparent"
+                />
               </svg>
 
               <p className="text-gray-700 mb-5">
