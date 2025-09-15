@@ -3,11 +3,10 @@ import "./MainBanner.css";
 
 const images = [
   "https://altostechnologies.in/static/img/image-1.png",
-  "https://www.intersmartsolution.com/wp-content/uploads/2025/08/2.jpg",
+   "/public/images/image.jpeg",
   "https://altostechnologies.in/static/img/bg1.gif",
-  "https://www.osperb.com/static/media/zeston-app.efcbb115.jpg",
-  "https://www.ksofttechnologies.com/_next/image?url=%2Fassets%2Fimage%2Fpagebanner%2Fpage-header-bg.jpg&w=1920&q=90",
-  "https://projonmodigital.com/wp-content/uploads/2024/09/Most-Effective-SEO-Tips-for-Beginner-Business.jpg",
+ 
+  "https://t4.ftcdn.net/jpg/06/10/72/89/360_F_610728942_koLvP7xF0ypcsfIkxAftJ5uZ87TCtEBE.webp",
   "https://octavius.ai/wp-content/uploads/2023/10/1_k4IDvhbuf0rgLkMRml3hcA-scaled.webp",
 ];
 
