@@ -3,10 +3,9 @@ import "./MainBanner.css";
 
 const images = [
   "https://altostechnologies.in/static/img/image-1.png",
-   "/images/image.jpeg",
+   "https://img.freepik.com/free-photo/web-design-concepts-with-blurred-background_1134-82.jpg?t=st=1757952567~exp=1757956167~hmac=fd2c28aad94569a8366148717404620f50c50520ebbf94157384bb477eadbc6e&w=1480",
   "https://altostechnologies.in/static/img/bg1.gif",
- 
-  "https://t4.ftcdn.net/jpg/06/10/72/89/360_F_610728942_koLvP7xF0ypcsfIkxAftJ5uZ87TCtEBE.webp",
+  "https://img.freepik.com/premium-psd/cloud-computing-network_854300-3306.jpg?w=1480",
   "https://octavius.ai/wp-content/uploads/2023/10/1_k4IDvhbuf0rgLkMRml3hcA-scaled.webp",
 ];
 
