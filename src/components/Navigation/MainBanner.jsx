@@ -3,7 +3,7 @@ import "./MainBanner.css";
 
 const images = [
   "https://altostechnologies.in/static/img/image-1.png",
-   "/public/images/image.jpeg",
+   "/images/image.jpeg",
   "https://altostechnologies.in/static/img/bg1.gif",
  
   "https://t4.ftcdn.net/jpg/06/10/72/89/360_F_610728942_koLvP7xF0ypcsfIkxAftJ5uZ87TCtEBE.webp",
