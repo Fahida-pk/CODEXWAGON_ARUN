@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 
@@ -20,12 +22,8 @@ function Login() {
 
       const data = await response.json();
 
-      console.log("USER:", data);
-
-      // ✅ Save user
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      // ✅ Redirect
       navigate("/dashboard");
 
     } catch (error) {
@@ -33,16 +31,18 @@ function Login() {
     }
   };
 
-  return (
-    <div className="login-container">
+ return (
+  <div className="login-container">
+    <div className="login-box">
       <h2>Login</h2>
-
+<h1 style={{color:"red"}}>LOGIN PAGE</h1>
       <GoogleLogin
         onSuccess={handleSuccess}
         onError={() => console.log("Login Failed")}
       />
     </div>
-  );
+  </div>
+);
 }
 
 export default Login;
