@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +9,9 @@ function Login() {
     console.log("TOKEN:", res.credential);
 
     try {
-      const response = await fetch("http://localhost:5001/api/google-login", {
+      const apiBase = import.meta.env.VITE_API_BASE;
+
+      const response = await fetch(`${apiBase}/api/google-login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -22,6 +23,8 @@ function Login() {
 
       const data = await response.json();
 
+      console.log("USER:", data);
+
       localStorage.setItem("user", JSON.stringify(data.user));
 
       navigate("/dashboard");
@@ -31,18 +34,19 @@ function Login() {
     }
   };
 
- return (
-  <div className="login-container">
-    <div className="login-box">
-      <h2>Login</h2>
-<h1 style={{color:"red"}}>LOGIN PAGE</h1>
-      <GoogleLogin
-        onSuccess={handleSuccess}
-        onError={() => console.log("Login Failed")}
-      />
+  return (
+    <div className="login-container">
+      <div className="login-box">
+        <h2>Login</h2>
+        <h1 style={{ color: "red" }}>LOGIN PAGE</h1>
+
+        <GoogleLogin
+          onSuccess={handleSuccess}
+          onError={() => console.log("Login Failed")}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default Login;
