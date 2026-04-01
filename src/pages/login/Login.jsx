@@ -1,6 +1,7 @@
 import React from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
+import "./Login.css"; // ✅ IMPORTANT
 
 function Login() {
   const navigate = useNavigate();
@@ -21,10 +22,8 @@ function Login() {
 
       const data = await response.json();
 
-      // ✅ Save user
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      // ✅ Redirect to Home
       navigate("/");
 
     } catch (error) {
@@ -34,13 +33,22 @@ function Login() {
 
   return (
     <div className="login-container">
-      <div className="login-box">
-        <h2>Login</h2>
+      <div className="overlay"></div>
 
-        <GoogleLogin
-          onSuccess={handleSuccess}
-          onError={() => console.log("Login Failed")}
-        />
+      <div className="login-card">
+        <h1 className="logo">CODEXWAGON</h1>
+        <p className="tagline">Welcome Back 👋</p>
+
+        <div className="google-btn">
+          <GoogleLogin
+            onSuccess={handleSuccess}
+            onError={() => console.log("Login Failed")}
+          />
+        </div>
+
+        <p className="footer-text">
+          Secure login powered by Google
+        </p>
       </div>
     </div>
   );
