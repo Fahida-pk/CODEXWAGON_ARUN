@@ -27,7 +27,7 @@ function Login() {
 
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      navigate("/dashboard");
+      navigate("/home");
 
     } catch (error) {
       console.log("Error:", error);
