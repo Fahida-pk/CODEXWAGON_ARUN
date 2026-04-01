@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import contactRoutes from "./routes/contactRoutes.js";
+import googleAuth from "./routes/googleAuth.js"; // ✅ add
 
 dotenv.config();
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/contact", contactRoutes);
+app.use("/api", googleAuth); // ✅ add
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {

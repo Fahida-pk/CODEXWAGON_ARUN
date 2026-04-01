@@ -2,32 +2,29 @@ import React from "react";
 import "./Services.css";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";          // ✅ use Link for SPA navigation
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// ✅ Define API Base from .env
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5001";
+// ❌ No API_BASE needed for internal pages
 
-// ✅ Detailed Services Data (SEO friendly)
+// ✅ Services data with internal routes
 const services = [
- {
-  title: "Cloud Computing",
-  description:
-    "Leverage scalable and secure cloud computing solutions to enhance flexibility, reduce costs, and drive innovation. Optimize your business operations with cloud migration, storage, and managed services.",
-  icon: (
-    <img
-      src="https://cdn-icons-png.flaticon.com/512/3796/3796815.png"
-      alt="Cloud Computing"
-      width="67"
-      height="63"
-      loading="lazy"
-    />
-  ),
-  link: `${API_BASE}/cloud-computing/`,
-},
-
-
-
+  {
+    title: "Cloud Computing",
+    description:
+      "Leverage scalable and secure cloud computing solutions to enhance flexibility, reduce costs, and drive innovation. Optimize your business operations with cloud migration, storage, and managed services.",
+    icon: (
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3796/3796815.png"
+        alt="Cloud Computing"
+        width="67"
+        height="69"
+        loading="lazy"
+      />
+    ),
+    link: "/services/cloud-computing",   // ✅ frontend route
+  },
   {
     title: "Mobile Application",
     description:
@@ -41,7 +38,7 @@ const services = [
         loading="lazy"
       />
     ),
-    link: `${API_BASE}/mobile-app-development/`,
+    link: "/services/mobile-app",        // ✅ frontend route
   },
   {
     title: "Search Engine Optimization",
@@ -56,7 +53,7 @@ const services = [
         loading="lazy"
       />
     ),
-    link: `${API_BASE}/seo/`,
+    link: "/services/seo",
   },
   {
     title: "Web Development",
@@ -71,7 +68,7 @@ const services = [
         loading="lazy"
       />
     ),
-    link: `${API_BASE}/web-development/`,
+    link: "/services/web",
   },
 ];
 
@@ -108,11 +105,11 @@ export default function Services() {
         <Slider
           className="services-carousel"
           dots={false}
-          infinite={true}
+          infinite
           speed={800}
           slidesToShow={4}
           slidesToScroll={1}
-          autoplay={true}
+          autoplay
           autoplaySpeed={2500}
           responsive={[
             { breakpoint: 1000, settings: { slidesToShow: 2 } },
@@ -120,15 +117,11 @@ export default function Services() {
           ]}
         >
           {services.map((service, index) => (
-            <a
+            <Link        // ✅ Link instead of <a>
               key={index}
+              to={service.link}
               className="ServBox WebDev"
-              href={service.link}
-              style={{
-                display: "block",
-                textDecoration: "none",
-                color: "inherit",
-              }}
+              style={{ textDecoration: "none", color: "inherit" }}
             >
               <div className="Icon">{service.icon}</div>
               <div className="ServName">
@@ -157,7 +150,7 @@ export default function Services() {
                 <span>View more</span>
                 <span style={{ marginLeft: 6 }}>+</span>
               </div>
-            </a>
+            </Link>
           ))}
         </Slider>
       </div>
