@@ -6,8 +6,6 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSuccess = async (res) => {
-    console.log("TOKEN:", res.credential);
-
     try {
       const apiBase = import.meta.env.VITE_API_BASE;
 
@@ -23,11 +21,11 @@ function Login() {
 
       const data = await response.json();
 
-      console.log("USER:", data);
-
+      // ✅ Save user
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      navigate("/home");
+      // ✅ Redirect to Home
+      navigate("/");
 
     } catch (error) {
       console.log("Error:", error);
@@ -38,7 +36,6 @@ function Login() {
     <div className="login-container">
       <div className="login-box">
         <h2>Login</h2>
-        <h1 style={{ color: "red" }}>LOGIN PAGE</h1>
 
         <GoogleLogin
           onSuccess={handleSuccess}
